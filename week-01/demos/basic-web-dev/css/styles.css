@@ -1,0 +1,13 @@
+/* This is an external style sheet and will be what you use the majority of the time to style your 
+elements. Why would we use this as a default? This can be used in several different files at once, and 
+also it has the lowest priority (barring any !important things) meaning if you need the styling anywhere
+specifically you can */
+
+#my-special-paragraph{
+    font-size: x-large;
+}
+
+.div-class-2{
+    background-color: white;
+    font-size: x-large;
+}

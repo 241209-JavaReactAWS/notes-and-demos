@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro to CSS</title>
+    
+    <!-- 
+        CSS (Cascading Style Sheets) is the second part of out frontend web pages. If HTML outlines the 
+        basic structure of a page, CSS's job is to make it prettier. CSS alows us to style and change the
+        look of our pages
+
+        There are 3 major kinds of CSS we'll keep track of
+        Inline CSS: Style achieved by manipulating the style attribute on a specific element
+        Internal CSS: CSS defined in the head of the HTML document and used for this page in particular
+        External CSS: Externall stylesheet used to provide styles to multiple locations
+
+        We'll see this in action but CSS types have a specific priority. I always think of it as measured
+        by proximity to the code to be styled. 
+    -->
+        <style>
+            /* Everything inside of the style tag is PURE CSS (You can tell because the comments
+            have changed) */
+
+            /* ID Selector -> Used to select a SPECIFIC element on the page using its id */
+            #my-special-div{
+                border: 2px black dashed;
+                color:green
+            }
+
+            /* Class Selector -> Used to select multiple elements with the same class */
+            .div-class{
+                background-color: lemonchiffon;
+                border: 5px slateblue solid;
+                margin: 10px
+            }
+
+            /* Tag Selector -> Used to select all of the elements with a specific tag */
+            span{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: blanchedalmond;
+            }
+
+            .div-class-2{
+                border: 2px solid black;
+                font-size: small;
+            }
+        </style>
+
+        <!-- External stylesheets are connected to their HTML pages by a link tag -->
+        <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <h1>CSS Rules are defined in Key-value pairs that can be assigned in different locations</h1>
+    <p style="color:goldenrod; background-color: black;">This is an example of inline styling</p>
+    <!-- Why is the black box across the entire length of the page?
+    A Paragrah element is known as a BLOCK Element 
+    The alternative to this is an INLINE element
+    A span element is the alternative to a paragraph but it is inline
+    -->
+    <span style="color: red; background-color: aquamarine;">This is a second paragraph</span>
+
+    <!-- Internal Styling -->
+    <div>
+        <h2>Selectors</h2>
+        <h3>Element, Class, and Id Selectors</h3>
+
+        <div id="my-special-div">
+            <p>This div has a unique identifier called an ID</p>
+            <p>Second child element</p>
+        </div>
+
+        <div class="div-class">
+            <p>This div shares a class with the div below!</p>
+        </div>
+
+        <div class="div-class">
+            <p>This div shares a class with the div above!</p>
+            <div class="div-class-2">
+                Sub div
+            </div>
+        </div>
+
+        <div>
+            <span>This is its own span tag</span>
+        </div>
+    </div>
+
+    <p id="my-special-paragraph">This paragraph was styled externally!</p>
+</body>
+</html>
