@@ -14,6 +14,7 @@ import java.util.Optional;
 @RequestMapping("customers") // Requests will be routed in this application and we need to declare what endpoints we
 // want to handle so we use @RequestMapping to give a parent mapping for all endpoints below
 // This class will handle all requests going to http://localhost:8080/customers
+@CrossOrigin(origins = {"http://localhost:5500", "http://127.0.0.1:5500"})
 public class CustomerController {
 
     /*
