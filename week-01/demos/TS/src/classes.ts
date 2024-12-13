@@ -56,7 +56,61 @@ console.log(Animal.sampleVariable)
 
 // PILLARS OF OOP
 // INHERITANCE
+// We're going to inherit the Animal class and make a child class called
+class Dog extends Animal{
+    // Dogs are Animals, meaning they have access to the fields and methods from the Animal class
 
-// POLYMORPHISM
+    bark(): void {
+        console.log("ARF ARF ARF")
+    }
+
+    // POLYMORPHISM
+    // Generally happens in extended classes. So there are two ways to achieve polymorphism
+    // Overriding
+    move(feet: number){
+        console.log(`The dog ${this.name} moved a total of ${feet} feet. What a good boy!`)
+    }
+    // Overloading
+    // someMethod(a: string): void
+    // someMethod(a : number) : void;
+    // someMethod(a: number, b: string) : void;
+    // someMethod(a : number |string, b?: string): void{
+    //     // So this might work for overloading, not entirely sure
+    // }
+}
+
+let cash = new Dog("Cash", "Pit Bull")
+cash.bark()
+cash.move(0)
+
+
 
 // ABSTRACTION
+abstract class Car{
+    // This can contain both abstract and concrete methods
+    abstract drive():void;
+    // Implementing class must provide the drive method itself
+
+    alarm():void{
+        console.log("BEEP BEEP BEEP")
+    }
+}
+
+class Jeep extends Car{
+    drive(): void {
+        console.log("Fuel Burns, Pistons Turn, Exhaust is Created, Jeep moves forward")
+    }
+}
+
+class Tesla extends Car{
+    drive(): void {
+        console.log("Drains electricity from the battery, car moves forward")
+    }
+}
+
+let greenJeep: Car = new Jeep();
+// A Jeep is a TYPE of Car
+greenJeep.drive()
+
+let whiteTesla: Car = new Tesla();
+whiteTesla.drive()
