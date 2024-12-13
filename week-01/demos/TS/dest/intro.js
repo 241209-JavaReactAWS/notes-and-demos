@@ -113,3 +113,20 @@ let p2 = {
     lastName: "Doe",
     isMarried: false
 };
+// Never
+// This data type is used to represent a value that should never exist or a function return type that never 
+// returns
+function neverFunction() {
+    throw new DOMException();
+    // let string = "Unreachable code"
+}
+let numberOrString = 1;
+if (typeof numberOrString === "number") {
+    console.log(numberOrString);
+}
+else if (typeof numberOrString === "string") {
+    console.log(numberOrString);
+}
+else {
+    numberOrString;
+}
