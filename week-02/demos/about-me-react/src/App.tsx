@@ -1,7 +1,9 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
 import Home from './components/home/Home'
+import Nav from './components/nav/Nav'
 import TTAAL from './components/ttaal/TTAAL'
 
 /*
@@ -35,10 +37,32 @@ function App() {
     */
     // React Components BEGIN WITH A CAPITAL LETTER
     // HTML Elements are all lowercase
-   <>
+    <>
       <Header></Header>
-      <Home></Home>
-      <TTAAL></TTAAL>
+
+      <BrowserRouter>
+        <Nav></Nav>
+        {/* Before, we'd be rending one thing at a time, now we want to render both and show/hide them
+      based off the path of the page we're on */}
+        {/* <Home></Home>
+        <TTAAL></TTAAL> */}
+
+          <Routes>
+            {/* The Routes tag will be used to define ALL of the routes/views we can see */}
+            <Route path='/' element={<Home></Home>}></Route>
+            <Route path='/ttaal' element={<TTAAL></TTAAL>}></Route>
+          </Routes>
+
+      </BrowserRouter>
+
+      {/* 
+      
+      When React recognizes that the path has changed, what is the process to rerender the screen?
+      React holds a Virtual DOM which is a lighter weight version of the actual DOM.
+      Any operations to change the page will first happen to the virtual DOM, then React will reconcile the 
+      virtual dom and the regular dom is the most efficient way possible. So unchanged components DO NOT rerender
+
+      */}
 
       <Footer></Footer>
     </>
