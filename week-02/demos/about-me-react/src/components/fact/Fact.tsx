@@ -8,7 +8,7 @@ Props -> Properties passed from a parent component to a child component. The dat
 usually used for initialization info
 */
 
-interface FactProps{
+export interface FactProps{
     id: number,
     fact: string,
     isTrue: boolean

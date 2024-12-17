@@ -1,4 +1,4 @@
-import Fact from "../fact/Fact"
+import Fact, { FactProps } from "../fact/Fact"
 import "./TTAAL.css"
 // So we haven't added any CSS files yet, but for this component we're running into an issue with the word 'class'
 // Class is a keyword is TS/JS but it's used for something else in HTML
@@ -6,7 +6,7 @@ import "./TTAAL.css"
 
 function TTAAL() {
 
-    const facts = [
+    const facts : FactProps[] = [
         {
             id: 1,
             fact: "I've competed for the US National Team for Karate in multiple international competitions",
@@ -49,9 +49,10 @@ function TTAAL() {
             {
                 facts.map( (fact) => {
                     return <Fact
-                        id={fact.id}
-                        fact={fact.fact}
-                        isTrue={fact.isTrue}
+                        // id={fact.id}
+                        // fact={fact.fact}
+                        // isTrue={fact.isTrue}
+                        {...fact}
                     ></Fact>
                 })
             }
