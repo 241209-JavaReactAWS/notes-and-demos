@@ -5,9 +5,11 @@ between the components and define the state there. From there the variable and s
 are passed down through props to the desired component
 */
 
-import { useState } from "react"
+import { createContext, useState } from "react"
 import './Parent.css'
 import Child from "../child/Child"
+
+export const valueContext = createContext(0)
 
 function Parent() {
     const[nameValue, setNameValue] = useState('Bryan')
@@ -24,12 +26,14 @@ function Parent() {
     }
 
   return (
-    <div className="parent">
-        <h1>Hello from our Parent Component!</h1>
-        <h1>The value stored in nameValue is {nameValue}</h1>
-        <button onClick={toggleName}>Toggle Name!</button>
-        <Child name={nameValue} setName={setNameValue}/>
-    </div>
+    <valueContext.Provider value={42} >
+        <div className="parent">
+            <h1>Hello from our Parent Component!</h1>
+            <h1>The value stored in nameValue is {nameValue}</h1>
+            <button onClick={toggleName}>Toggle Name!</button>
+            <Child name={nameValue} setName={setNameValue}/>
+        </div>
+    </valueContext.Provider>
   )
 }
 

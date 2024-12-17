@@ -4,6 +4,9 @@ import Nav from './components/nav/Nav'
 import Counter from './components/state-intro/counter/Counter'
 import CounterContainer from './components/state-intro/counter-container/CounterContainer'
 import Parent from './components/props/parent/Parent'
+import ContextProvider from './components/context/ContextProvider'
+import Events from './components/events/Events'
+import AxiosFetch from './components/axios-fetch/AxiosFetch'
 
 function App() {
   
@@ -20,6 +23,9 @@ function App() {
         <Route path="/" element={<Counter />}/>
         <Route path='/counter-container' element={<CounterContainer />} />
         <Route path="/props" element={<Parent />}/>
+        <Route  path="/context" element={<ContextProvider />}/>
+        <Route path="/events" element={<Events />} />
+        <Route path="/axios-fetch" element={<AxiosFetch />} />
       </Routes>
 
       </BrowserRouter>
