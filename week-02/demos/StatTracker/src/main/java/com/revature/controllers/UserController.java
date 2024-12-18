@@ -8,8 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class UserController {
 
     private final UserService userService;
