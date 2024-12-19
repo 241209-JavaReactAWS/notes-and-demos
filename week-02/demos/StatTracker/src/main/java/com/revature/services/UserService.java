@@ -96,4 +96,11 @@ public class UserService {
         // Save the user now that the info is updated
         return userDAO.save(returnedUser);
     }
+
+    // Let's quickly add in a method for retreiving a user from the database
+    public User getUserByUsername(String username){
+        Optional<User> possibleUser = userDAO.getUserByUsername(username);
+
+        return possibleUser.orElse(null);
+    }
 }

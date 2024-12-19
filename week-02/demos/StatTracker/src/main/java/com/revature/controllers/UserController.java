@@ -3,6 +3,7 @@ package com.revature.controllers;
 import com.revature.models.User;
 import com.revature.services.UserService;
 import jakarta.servlet.http.HttpSession;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -111,5 +112,22 @@ public class UserController {
         }
 
         return ResponseEntity.ok(returnedUser);
+    }
+
+
+    // We forgot a read method for getting the actual user information
+    // I'll create a method to give information back about the user that's stored in the session
+    @GetMapping // http://localhost:8080/users
+    public ResponseEntity<User> getUserInfoHandler(HttpSession session){
+        // Validate the user is logged in
+        if (session.isNew() || session.getAttribute("username") == null){
+            return ResponseEntity.status(401).build();
+        }
+
+        // Now we know the user is logged in, so let's retrieve the user itself
+        // We're going to not follow convention and trust this blindly works
+        User userToBeReturned = userService.getUserByUsername( (String) session.getAttribute("username"));
+
+        return ResponseEntity.ok(userToBeReturned);
     }
 }
