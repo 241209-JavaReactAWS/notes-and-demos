@@ -1,15 +1,15 @@
-What is Spring? Spring Boot?
-How would you set up a spring boot project?
-What are some annotations you've used?  (some good ones: stereotype annotations, main method annotations, MVC, Data JPA)
-What is the purpose of the @Component annotation
-What are Spring Beans?
-What Bean Scopes are you aware of?
-Describe Spring MVC Controllers?
-What is a "REST api"?
-How would you handle http calls/mappings using Spring?
-What is RestTemplate? What does it let us do?
-What is spring data? What are the JPA annotations?
-What does the @entity annotation do
-How do you handle database interactions with spring data?
-What is Autowiring?
-What is spring initializer?
+- What is Spring? Spring Boot?
+- How would you set up a spring boot project?
+- What are some annotations you've used?
+- What is the purpose of the @Component annotation
+- What are Spring Beans?
+- What Bean Scopes are you aware of?
+- Describe Spring MVC Controllers?
+- What is a "REST api"?
+- How would you handle http calls/mappings using Spring?
+- What is RestTemplate? What does it let us do?
+- What is spring data? What are the JPA annotations?
+- What does the @entity annotation do
+- How do you handle database interactions with spring data?
+- What is Autowiring?
+- What is spring initializer?
