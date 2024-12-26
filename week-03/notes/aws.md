@@ -33,11 +33,11 @@ Cloud computing is the on-demand delivery of compute power, database storage, ap
 
 ### Regions
 
-A highly available data center that houses Amazon cloud computing resources in different areas of the world (33 in total)
+A highly available data center that houses Amazon cloud computing resources in different areas of the world (34 in total)
 
 ### Availability Zones
 
-Each AWS Region contains multiple distinct locations called Availability Zones, or AZs. Each Availability Zone is engineered to be isolated from failures in other Availability Zones. (105 total in the world)
+Each AWS Region contains multiple distinct locations called Availability Zones, or AZs. Each Availability Zone is engineered to be isolated from failures in other Availability Zones. (108 total in the world)
 
 # RDS Overview
 
