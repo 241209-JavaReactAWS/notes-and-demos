@@ -3,12 +3,13 @@ import { Player } from "../../interfaces/Player"
 import axios from "axios"
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import NewPlayerFormMUI from "./NewPlayerFormMUI"
+import { BASE_API_URL } from "../../App"
 
 function PlayersMUI() {
     const [allPlayers, setAllPlayers] = useState<Player[]>([])
     useEffect(() => {
       
-        axios.get<Player[]>("http://localhost:8080/players")
+        axios.get<Player[]>(`${BASE_API_URL}/players`)
         .then((res) => {
             setAllPlayers(res.data)
         })

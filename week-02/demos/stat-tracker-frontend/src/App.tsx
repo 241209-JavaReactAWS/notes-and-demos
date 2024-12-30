@@ -25,6 +25,8 @@ export interface AuthContextType{
 
 export const authContext = createContext<AuthContextType | null>(null);
 
+export const BASE_API_URL="http://ec2-54-242-129-208.compute-1.amazonaws.com:8080"
+
 function App() {
   const [username, setUsername] = useState<string>('')
   // Using as const in Typescript gives us direct options for what we want the values to be
@@ -38,7 +40,7 @@ function App() {
   useEffect(()=>{
     // So whenever the page loads I want to send an axios request to make sure we're still logged in, if we are
     // we should have the proper nav bar and if we are we should also see "log out" as an option
-    axios.get<User>('http://localhost:8080/users', {withCredentials: true})
+    axios.get<User>(`${BASE_API_URL}/users`, {withCredentials: true})
     .then((res) => {
       setUsername(res.data.username)
       setRole(res.data.role)

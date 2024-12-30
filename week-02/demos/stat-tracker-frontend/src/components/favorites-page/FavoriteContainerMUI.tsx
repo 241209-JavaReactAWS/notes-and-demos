@@ -5,6 +5,7 @@ import { User } from "../../interfaces/User"
 import FavoriteMUI from "./FavoriteMUI"
 import { Button, Fab } from "@mui/material"
 import NewPlayerFormMUI from "../all-players-page/NewPlayerFormMUI"
+import { BASE_API_URL } from "../../App"
 
 
 function FavoriteContainerMUI() {
@@ -14,7 +15,7 @@ function FavoriteContainerMUI() {
    
     useEffect(() => {
         
-        axios.get<User>('http://localhost:8080/users', {withCredentials:true})
+        axios.get<User>(`${BASE_API_URL}/users`, {withCredentials:true})
         .then((res) => {
             setFavorites(res.data.favorites)
         })

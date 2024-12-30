@@ -7,7 +7,7 @@ import { AppBar, Toolbar, IconButton, Typography, Box, Button } from "@mui/mater
 import axios from "axios";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom"
-import { authContext } from "../../App";
+import { authContext, BASE_API_URL } from "../../App";
 
 function NavMUI() {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ function NavMUI() {
     }
 
     let logOut = () => {
-        axios.post('http://localhost:8080/users/logout', {}, {withCredentials: true})
+        axios.post(`${BASE_API_URL}/users/logout`, {}, {withCredentials: true})
         .then((res) => {
             // If we successfully log out we should let all the components know that the username is now null
             // and the role is unauthenticated

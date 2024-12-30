@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Player } from "../../interfaces/Player"
 import axios from "axios"
+import { BASE_API_URL } from "../../App"
 
 function Players() {
     const [allPlayers, setAllPlayers] = useState<Player[]>([])
@@ -21,7 +22,7 @@ function Players() {
     useEffect(() => {
         // This will execute when the component mounts and on certain other conditions
         // Send an AXIOS request when the page loads
-        axios.get<Player[]>("http://localhost:8080/players")
+        axios.get<Player[]>(`${BASE_API_URL}/players`)
         .then((res) => {
             setAllPlayers(res.data)
         })

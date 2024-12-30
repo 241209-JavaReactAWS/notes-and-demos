@@ -3,6 +3,7 @@ import { Player } from "../../interfaces/Player"
 import Favorite from "./Favorite"
 import axios from "axios"
 import { User } from "../../interfaces/User"
+import { BASE_API_URL } from "../../App"
 
 /*
 This component controls the view for the favorites page. So we should be able to call the API to get all of a 
@@ -17,7 +18,7 @@ function FavoriteContainer() {
     //Whenever the page loads up I want to make a call to the backend and get the information for the user
     useEffect(() => {
         // I will make an axios call to the backend to receive the info for the user
-        axios.get<User>('http://localhost:8080/users', {withCredentials:true})
+        axios.get<User>(`${BASE_API_URL}/users`, {withCredentials:true})
         .then((res) => {
             setFavorites(res.data.favorites)
         })

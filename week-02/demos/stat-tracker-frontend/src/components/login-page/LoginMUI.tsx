@@ -1,7 +1,7 @@
 import { CssBaseline, Card, Typography, Box, FormControl, FormLabel, TextField, FormControlLabel, Checkbox, Button, Divider, Stack, styled } from '@mui/material';
 import axios from 'axios';
 import React, { useContext } from 'react'
-import { authContext } from '../../App';
+import { authContext, BASE_API_URL } from '../../App';
 import { useNavigate } from 'react-router-dom';
 
 const SignInContainer = styled(Stack)(({ theme }) => ({
@@ -74,7 +74,7 @@ function LoginMUI() {
         }
 
         // Next thing is sending the actual request
-        axios.post("http://localhost:8080/users/login", 
+        axios.post(`${BASE_API_URL}/users/login`, 
             {username, password},
             {withCredentials: true}
             // WithCredentials allows the JSESSION cookie to be set and sent with requests so we need to include

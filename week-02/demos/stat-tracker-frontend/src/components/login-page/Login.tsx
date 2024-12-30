@@ -5,7 +5,7 @@ and receive information about the person who is logged in
 
 import axios from "axios"
 import { SyntheticEvent, useContext, useState } from "react"
-import { authContext } from "../../App"
+import { authContext, BASE_API_URL } from "../../App"
 
 function Login() {
     // This line below gives this component the ability to access who is logged in
@@ -31,7 +31,7 @@ function Login() {
         }
 
         // Next thing is sending the actual request
-        axios.post("http://localhost:8080/users/login", 
+        axios.post(`${BASE_API_URL}/users/login`, 
             {username, password},
             {withCredentials: true}
             // WithCredentials allows the JSESSION cookie to be set and sent with requests so we need to include

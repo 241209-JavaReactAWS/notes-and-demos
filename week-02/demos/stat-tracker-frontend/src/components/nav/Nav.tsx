@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { authContext } from "../../App"
+import { authContext, BASE_API_URL } from "../../App"
 import axios from "axios"
 
 
@@ -16,7 +16,7 @@ function Nav() {
 
 
     let logOut = () => {
-        axios.post('http://localhost:8080/users/logout', {}, {withCredentials: true})
+        axios.post(`${BASE_API_URL}/users/logout`, {}, {withCredentials: true})
         .then((res) => {
             // If we successfully log out we should let all the components know that the username is now null
             // and the role is unauthenticated
