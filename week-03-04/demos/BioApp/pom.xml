@@ -52,6 +52,10 @@
 	</dependencies>
 
 	<build>
+<!--		Adding in final build name to make it consistent across version changes-->
+		<finalName>
+			app
+		</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

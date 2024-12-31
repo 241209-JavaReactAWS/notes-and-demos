@@ -1,0 +1,26 @@
+main{
+    /* background-color: brown; */
+
+    border-bottom: 2px solid black;
+}
+
+main h3{
+    text-indent: 2em;
+    margin: 0px;
+    padding: 1%;
+}
+
+p{
+    text-indent: 1em;
+}
+figure{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#pic {
+    border: 2px solid black;
+    border-radius: 2%;
+    width: 400px;
+}
