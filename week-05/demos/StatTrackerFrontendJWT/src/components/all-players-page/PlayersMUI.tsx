@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from "react"
 import { Player } from "../../interfaces/Player"
 import axios from "axios"
-import { Button, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
+import { Alert, Button, IconButton, Snackbar, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import NewPlayerFormMUI from "./NewPlayerFormMUI"
 import { authContext, BASE_API_URL } from "../../App"
 import { User } from "../../interfaces/User"
+import CloseIcon from '@mui/icons-material/Close';
 
 function PlayersMUI() {
     const [allPlayers, setAllPlayers] = useState<Player[]>([])
     const [shouldUpdate, setShouldUpdate] = useState(false);
+    const [openSnackBar, setOpenSnackbar] = useState(false)
     const auth = useContext(authContext)
 
     useEffect(() => {
@@ -28,7 +30,8 @@ function PlayersMUI() {
             }
         ).then((res) => {
             console.log(res.data)
-            alert("Player successfully added!")
+            // alert("Player successfully added!")
+            handleOpenSnackbar()
         }).catch((err) => {
             console.log(err)
             alert("Something went wrong!")
@@ -38,6 +41,28 @@ function PlayersMUI() {
     let toggleUpdate = () => {
         setShouldUpdate(!shouldUpdate);
     }
+
+    let handleOpenSnackbar = () => {
+        setOpenSnackbar(true)
+    }
+
+    let handleCloseSnackbar = () => {
+        setOpenSnackbar(false)
+    }
+
+    let action = (
+        <>
+         
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={handleCloseSnackbar}
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </>
+      );
 
     return (
         <div>
@@ -95,6 +120,14 @@ function PlayersMUI() {
                     :
                     <></>
             }
+        <Snackbar
+        open={openSnackBar}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        message="Player Successfully added"
+        action={action}
+        anchorOrigin={{vertical: "bottom",  horizontal: "right"}}
+        />
         </div>
     )
 }

@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom"
 
 interface FavoritesProps{
   player: Player;
-  toggleUpdate: () => void
+  toggleUpdate: () => void;
+  handleOpenSnackbar: () => void;
 }
 
 function FavoriteMUI(props: FavoritesProps) {
@@ -20,7 +21,8 @@ function FavoriteMUI(props: FavoritesProps) {
       }}
   ).then((res) => {
       console.log(res.data)
-      alert("Player removed!")
+      // alert("Player removed!")
+      props.handleOpenSnackbar()
       props.toggleUpdate()
   }).catch((err) => {
       console.log(err)

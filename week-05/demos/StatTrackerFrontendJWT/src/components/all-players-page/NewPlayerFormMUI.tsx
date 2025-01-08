@@ -51,6 +51,7 @@ function NewPlayerFormMUI(props: NewPlayerFormProps) {
         console.log(res.data)
         alert("Successfully added new player")
         props.toggleUpdate()
+        handleClose()
       })
   }
 
