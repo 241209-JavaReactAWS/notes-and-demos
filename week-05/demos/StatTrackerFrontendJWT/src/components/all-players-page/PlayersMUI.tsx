@@ -8,6 +8,7 @@ import { User } from "../../interfaces/User"
 
 function PlayersMUI() {
     const [allPlayers, setAllPlayers] = useState<Player[]>([])
+    const [shouldUpdate, setShouldUpdate] = useState(false);
     const auth = useContext(authContext)
 
     useEffect(() => {
@@ -15,7 +16,7 @@ function PlayersMUI() {
             .then((res) => {
                 setAllPlayers(res.data)
             })
-        },[])
+        },[shouldUpdate])
 
     let addToFavorites = (playerId: number) => {
         axios.post<User>(`${BASE_API_URL}/users/favorites/${playerId}`,
@@ -34,7 +35,9 @@ function PlayersMUI() {
         })
     }
 
-
+    let toggleUpdate = () => {
+        setShouldUpdate(!shouldUpdate);
+    }
 
     return (
         <div>
@@ -88,7 +91,7 @@ function PlayersMUI() {
 
             {
                 auth?.role == "ADMIN" ?
-                    <NewPlayerFormMUI />
+                    <NewPlayerFormMUI toggleUpdate={toggleUpdate}/>
                     :
                     <></>
             }

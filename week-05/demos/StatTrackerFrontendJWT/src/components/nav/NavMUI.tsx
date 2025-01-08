@@ -1,5 +1,4 @@
 import { AppBar, Toolbar, IconButton, Typography, Box, Button } from "@mui/material"
-import axios from "axios";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom"
 import { authContext, BASE_API_URL } from "../../App";
@@ -14,7 +13,6 @@ function NavMUI() {
 
     let logOut = () => {
       localStorage.removeItem("token")
-      auth?.setUsername('')
       auth?.setRole('unauthenticated')
       navigate('/login')
     }

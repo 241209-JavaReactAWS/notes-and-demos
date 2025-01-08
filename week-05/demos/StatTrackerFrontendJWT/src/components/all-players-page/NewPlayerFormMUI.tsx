@@ -1,5 +1,8 @@
 import { Box, Button, Modal, TextField, Typography } from "@mui/material"
-import React from "react";
+import axios from "axios";
+import React, { SyntheticEvent, useState } from "react";
+import { Player } from "../../interfaces/Player";
+import { BASE_API_URL } from "../../App";
 
 const style = {
   position: 'absolute',
@@ -13,11 +16,43 @@ const style = {
   p: 4,
 };
 
+interface NewPlayerFormProps{
+  toggleUpdate : () => void
+}
 
-function NewPlayerFormMUI() {
-  const [open, setOpen] = React.useState(false);
+function NewPlayerFormMUI(props: NewPlayerFormProps) {
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [name, setName] = useState("")
+  const [url, setUrl] = useState("")
+  const [passingYards, setPassingYards] = useState(0)
+  const [attempts, setAttempts] = useState(0)
+  const [completions, setCompletions] = useState(0)
+  const [touchdowns, setTouchdowns] = useState(0)
+  const [interceptions, setInterceptions] = useState(0)
+
+  let addNewPlayer = () => {
+    axios.post<Player>(`${BASE_API_URL}/players`,
+      {
+        name,
+        picUrl:url,
+        passYards: passingYards,
+        attempts,
+        completions,
+        touchdowns,
+        interceptions
+      },
+      {headers: {
+        Authorization: "Bearer " + localStorage.getItem("token")
+      }})
+      .then((res) => {
+        console.log(res.data)
+        alert("Successfully added new player")
+        props.toggleUpdate()
+      })
+  }
 
   return (
     <div>
@@ -32,15 +67,55 @@ function NewPlayerFormMUI() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Add New Player
           </Typography>
-          <TextField label="Player Name" variant="outlined"  margin="normal"/>
-          <TextField label="Profile Picture URL" variant="outlined" margin="normal"/>
-          <TextField label="Passing Yards" variant="outlined" margin="normal" type="number"/>
-          <TextField label="Attempts" variant="outlined" margin="normal" type="number"/>
-          <TextField label="Completions" variant="outlined" margin="normal" type="number"/>
-          <TextField label="Touchdowns" variant="outlined" margin="normal" type="number"/>
-          <TextField label="Interceptions" variant="outlined" margin="normal" type="number"/>
+          <TextField 
+            label="Player Name" 
+            variant="outlined"  
+            margin="normal" 
+            value={name} 
+            onChange={(e:SyntheticEvent) => { setName((e.target as HTMLInputElement).value)}}/>
+          <TextField 
+            label="Profile Picture URL" 
+            variant="outlined" 
+            margin="normal" 
+            value={url} 
+            onChange={(e:SyntheticEvent) => { setUrl((e.target as HTMLInputElement).value)}}/>
+          <TextField 
+            label="Passing Yards" 
+            variant="outlined" 
+            margin="normal" 
+            type="number" 
+            value={passingYards} 
+            onChange={(e:SyntheticEvent) => { setPassingYards((e.target as HTMLInputElement).value as unknown as number)}}/>
+          <TextField 
+            label="Attempts" 
+            variant="outlined" 
+            margin="normal" 
+            type="number" 
+            value={attempts} 
+            onChange={(e:SyntheticEvent) => { setAttempts((e.target as HTMLInputElement).value as unknown as number)}}/>
+          <TextField 
+            label="Completions" 
+            variant="outlined" 
+            margin="normal" 
+            type="number" 
+            value={completions} 
+            onChange={(e:SyntheticEvent) => { setCompletions((e.target as HTMLInputElement).value as unknown as number)}}/>
+          <TextField 
+            label="Touchdowns" 
+            variant="outlined" 
+            margin="normal" 
+            type="number" 
+            value={touchdowns} 
+            onChange={(e:SyntheticEvent) => { setTouchdowns((e.target as HTMLInputElement).value as unknown as number)}}/>
+          <TextField 
+            label="Interceptions" 
+            variant="outlined" 
+            margin="normal" 
+            type="number" 
+            value={interceptions} 
+            onChange={(e:SyntheticEvent) => { setInterceptions((e.target as HTMLInputElement).value as unknown as number)}}/>
           <br></br>
-          <Button color="primary" variant="contained">Add New Player</Button>
+          <Button color="primary" variant="contained" onClick={addNewPlayer}>Add New Player</Button>
         </Box>
       </Modal>
     </div>

@@ -24,11 +24,13 @@ function Login() {
             {username, password}
         ).then((res) => {
             console.log(res.data)
-            auth?.setUsername(res.data.username)
             auth?.setRole(res.data.role)
-            localStorage.setItem("token", res.data.token)
-            navigate("/")
-
+            if (!res.data.token){
+              alert("Unable to log in")
+            } else{
+              localStorage.setItem("token", res.data.token)
+              navigate("/")
+            }
         }).catch((err) => {
             console.log(err) 
         })
@@ -47,7 +49,6 @@ function Login() {
           {username, password}
       ).then((res) => {
           console.log(res.data)
-          auth?.setUsername(res.data.username)
           auth?.setRole(res.data.role)
           localStorage.setItem("token", res.data.token)
           alert("Successfully Registered")
@@ -57,6 +58,29 @@ function Login() {
           alert("Something went wrong!")
       })
   }
+
+  let registerAdmin = () => {
+    if (!username){
+        alert("Please enter a username")
+        return;
+    }
+    if(!password){
+        alert("Please enter a password")
+        return;
+    }
+    axios.post<UserDTO>(`${BASE_API_URL}/auth/register-admin`, 
+        {username, password}
+    ).then((res) => {
+        console.log(res.data)
+        auth?.setRole(res.data.role)
+        localStorage.setItem("token", res.data.token)
+        alert("Successfully Registered")
+        navigate("/")
+    }).catch((err) => {
+        console.log(err)
+        alert("Something went wrong!")
+    })
+}
 
   return (
     <div>
@@ -82,6 +106,7 @@ function Login() {
 
       <button onClick={login}>Login!</button>
       <button onClick={register}>Register!</button>
+      <button onClick={registerAdmin}>Register as Admin!</button>
     </div>
   )
 }

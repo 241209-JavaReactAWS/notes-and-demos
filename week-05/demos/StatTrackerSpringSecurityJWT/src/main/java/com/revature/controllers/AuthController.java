@@ -68,6 +68,28 @@ public class AuthController {
         return userDTO;
     }
 
+    @PostMapping("/register-admin")
+    public UserDTO registerAdmin(@RequestBody AuthDTO authDTO){
+        // Create a new user object
+        User user = new User();
+        user.setUsername(authDTO.getUsername());
+        user.setPassword(authDTO.getPassword());
+        user.setFavorites(new HashSet<>());
+        user.setRole(Role.ADMIN);
+
+        // Register the user
+        User registeredUser = userService.register(user);
+
+        // Create UserDTO object
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserId(registeredUser.getUserId());
+        userDTO.setUsername(registeredUser.getUsername());
+        userDTO.setRole(registeredUser.getRole().name());
+        userDTO.setToken(JwtUtil.generateToken(registeredUser.getUsername()));
+
+        return userDTO;
+    }
+
 
 
 }

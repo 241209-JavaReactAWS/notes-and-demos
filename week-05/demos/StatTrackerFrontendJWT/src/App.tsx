@@ -10,8 +10,6 @@ import { User } from './interfaces/User';
 
 
 export interface AuthContextType{
-  username: string,
-  setUsername: (username: string) => void,
   role: "unauthenticated" | "USER" | "ADMIN",
   setRole: (role: "unauthenticated" | "USER" | "ADMIN") => void
 }
@@ -22,7 +20,6 @@ export const authContext = createContext<AuthContextType | null>(null);
 export const BASE_API_URL="http://ec2-3-91-57-118.compute-1.amazonaws.com"
 
 function App() {
-  const [username, setUsername] = useState<string>('')
   const [role, setRole] = useState<"unauthenticated" | "USER" | "ADMIN">('unauthenticated')
 
   useEffect(()=>{
@@ -33,16 +30,13 @@ function App() {
       }}
       )
       .then((res) => {
-        setUsername(res.data.username)
         setRole(res.data.role)
       })
       .catch((err) => {
         console.log(err)
-        setUsername('')
         setRole('unauthenticated')
       })
     } else{
-      setUsername('')
       setRole('unauthenticated')
     }
     
@@ -51,8 +45,6 @@ function App() {
   return (
     <authContext.Provider value={
       {
-        username,
-        setUsername,
         role,
         setRole
       }
