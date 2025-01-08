@@ -2,11 +2,12 @@ import axios from "axios"
 import { SyntheticEvent, useContext, useState } from "react"
 import { authContext, BASE_API_URL } from "../../App"
 import { UserDTO } from "../../interfaces/UserDTO"
+import { useNavigate } from "react-router-dom"
 
 function Login() {
     
     const auth = useContext(authContext)
-
+    const navigate = useNavigate()
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
@@ -26,10 +27,36 @@ function Login() {
             auth?.setUsername(res.data.username)
             auth?.setRole(res.data.role)
             localStorage.setItem("token", res.data.token)
+            navigate("/")
+
         }).catch((err) => {
             console.log(err) 
         })
     }
+
+    let register = () => {
+      if (!username){
+          alert("Please enter a username")
+          return;
+      }
+      if(!password){
+          alert("Please enter a password")
+          return;
+      }
+      axios.post<UserDTO>(`${BASE_API_URL}/auth/register`, 
+          {username, password}
+      ).then((res) => {
+          console.log(res.data)
+          auth?.setUsername(res.data.username)
+          auth?.setRole(res.data.role)
+          localStorage.setItem("token", res.data.token)
+          alert("Successfully Registered")
+          navigate("/")
+      }).catch((err) => {
+          console.log(err)
+          alert("Something went wrong!")
+      })
+  }
 
   return (
     <div>
@@ -54,6 +81,7 @@ function Login() {
       </label>
 
       <button onClick={login}>Login!</button>
+      <button onClick={register}>Register!</button>
     </div>
   )
 }
