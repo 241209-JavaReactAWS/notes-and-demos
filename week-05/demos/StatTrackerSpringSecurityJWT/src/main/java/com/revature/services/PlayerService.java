@@ -18,7 +18,7 @@ public class PlayerService {
     }
 
     public List<Player> getAllPlayers(){
-        return playerDAO.findAll();
+        return playerDAO.findAllByOrderByPassYardsDesc();
     }
 
     public Player createNewPlayer(Player playerToBeAdded){

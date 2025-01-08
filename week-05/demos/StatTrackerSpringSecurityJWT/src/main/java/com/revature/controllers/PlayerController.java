@@ -29,7 +29,7 @@ public class PlayerController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public ResponseEntity<Player> createNewPlayerHandler(HttpSession session, @RequestBody Player player){
+    public ResponseEntity<Player> createNewPlayerHandler(@RequestBody Player player){
         Player returnedPlayer = playerService.createNewPlayer(player);
         if(returnedPlayer == null){
             return ResponseEntity.badRequest().build();
@@ -37,4 +37,14 @@ public class PlayerController {
         return ResponseEntity.status(201).body(returnedPlayer);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("{playerId}")
+    public ResponseEntity<Player> updatePlayerHandler(@PathVariable int playerId,
+                                                      @RequestBody Player player){
+        Player returnedPlayer = playerService.updatePlayer(player);
+        if(returnedPlayer == null){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(returnedPlayer);
+    }
 }

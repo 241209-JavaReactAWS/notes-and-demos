@@ -1,8 +1,9 @@
-import { Box, Button, Modal, TextField, Typography } from "@mui/material"
+import { Box, Button, IconButton, Modal, Snackbar, TextField, Typography } from "@mui/material"
 import axios from "axios";
 import React, { SyntheticEvent, useState } from "react";
 import { Player } from "../../interfaces/Player";
 import { BASE_API_URL } from "../../App";
+import CloseIcon from '@mui/icons-material/Close';
 
 const style = {
   position: 'absolute',
@@ -22,6 +23,7 @@ interface NewPlayerFormProps{
 
 function NewPlayerFormMUI(props: NewPlayerFormProps) {
   const [open, setOpen] = useState(false);
+  const [openSnackBar, setOpenSnackbar] = useState(false)
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -49,11 +51,35 @@ function NewPlayerFormMUI(props: NewPlayerFormProps) {
       }})
       .then((res) => {
         console.log(res.data)
-        alert("Successfully added new player")
+        // alert("Successfully added new player")
+        handleOpenSnackbar();
         props.toggleUpdate()
         handleClose()
       })
   }
+
+  let handleOpenSnackbar = () => {
+    setOpenSnackbar(true)
+}
+
+let handleCloseSnackbar = () => {
+    setOpenSnackbar(false)
+}
+
+let action = (
+  <>
+   
+    <IconButton
+      size="small"
+      aria-label="close"
+      color="inherit"
+      onClick={handleCloseSnackbar}
+    >
+      <CloseIcon fontSize="small" />
+    </IconButton>
+  </>
+);
+
 
   return (
     <div>
@@ -119,6 +145,15 @@ function NewPlayerFormMUI(props: NewPlayerFormProps) {
           <Button color="primary" variant="contained" onClick={addNewPlayer}>Add New Player</Button>
         </Box>
       </Modal>
+
+      <Snackbar
+        open={openSnackBar}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        message="Player Successfully Added"
+        action={action}
+        anchorOrigin={{vertical: "bottom",  horizontal: "right"}}
+        />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import NewPlayerFormMUI from "./NewPlayerFormMUI"
 import { authContext, BASE_API_URL } from "../../App"
 import { User } from "../../interfaces/User"
 import CloseIcon from '@mui/icons-material/Close';
+import UpdatePlayerFormMUI from "./UpdatePlayerFormMUI"
 
 function PlayersMUI() {
     const [allPlayers, setAllPlayers] = useState<Player[]>([])
@@ -77,7 +78,7 @@ function PlayersMUI() {
                         <TableCell>Touchdowns</TableCell>
                         <TableCell>Interceptions</TableCell>
                         {
-                            auth?.role == "USER" ?
+                            auth?.role == "USER" || auth?.role == "ADMIN"?
                                 <TableCell>Options</TableCell>
                                 :
                                 <></>
@@ -106,6 +107,13 @@ function PlayersMUI() {
                                             </Button>
                                         </TableCell>
                                         :
+                                        auth?.role == "ADMIN" ?
+                                        <TableCell>
+                                            <UpdatePlayerFormMUI 
+                                            toggleUpdate={toggleUpdate} 
+                                            player={player} />
+                                        </TableCell>
+                                        :
                                         <></>
                                 }
                             </TableRow>
@@ -124,7 +132,7 @@ function PlayersMUI() {
         open={openSnackBar}
         autoHideDuration={6000}
         onClose={handleCloseSnackbar}
-        message="Player Successfully added"
+        message="Added Player to Favorites"
         action={action}
         anchorOrigin={{vertical: "bottom",  horizontal: "right"}}
         />
