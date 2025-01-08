@@ -16,8 +16,8 @@ export interface AuthContextType{
 
 export const authContext = createContext<AuthContextType | null>(null);
 
-export const BASE_API_URL="http://localhost:8080"
-// export const BASE_API_URL="http://ec2-3-91-57-118.compute-1.amazonaws.com"
+// export const BASE_API_URL="http://localhost:8080"
+export const BASE_API_URL="http://ec2-3-91-57-118.compute-1.amazonaws.com"
 
 function App() {
   const [role, setRole] = useState<"unauthenticated" | "USER" | "ADMIN">('unauthenticated')

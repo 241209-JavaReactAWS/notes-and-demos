@@ -153,7 +153,7 @@ function UpdatePlayerFormMUI(props: UpdatePlayerFormProps) {
         open={openSnackBar}
         autoHideDuration={6000}
         onClose={handleCloseSnackbar}
-        message="Added Player to Favorites"
+        message="Updated Player"
         action={action}
         anchorOrigin={{vertical: "bottom",  horizontal: "right"}}
         />
